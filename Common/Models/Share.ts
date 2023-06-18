@@ -1,3 +1,8 @@
+import {DataTypes, Sequelize} from "sequelize";
+import {BaseEntity} from "./Base/BaseEntity";
+
+/*
+
 class Share {
     private static totalShares = 0;
     private static totalHours = 0;
@@ -19,4 +24,51 @@ class Share {
     public get idOfShare(): number {
         return this.id;
     }
+}
+
+ */
+
+/**
+ * Represents a Share entity with attributes and methods.
+ * @extends BaseEntity<Share>
+ */
+export class Share extends BaseEntity<Share> {
+
+    /**
+     * Initializes the Share model with the given sequelize instance and attributes.
+     * @param sequelize The sequelize instance to use.
+     */
+    public static initModel(sequelize: Sequelize): void {
+        super.init({
+            id: {
+                type: DataTypes.INTEGER,
+                autoIncrement: true,
+                primaryKey: true
+            },
+            date: {
+                type: DataTypes.DATE
+            },
+            company: {
+                type: DataTypes.INTEGER,
+                references: 'Company',
+                allowNull: false,
+            },
+            member: {
+                type: DataTypes.INTEGER,
+                references: 'User',
+                allowNull: false,
+            },
+            value: {
+                type: DataTypes.FLOAT,
+                allowNull: false
+            },
+            hours: {
+                type: DataTypes.FLOAT,
+                allowNull: false
+            }
+        }, {
+            sequelize: sequelize,
+            modelName: 'Share'
+        });
+    };
 }
