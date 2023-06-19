@@ -10,13 +10,11 @@ export class User extends BaseEntity<User> {
      * Initializes the User model with the given sequelize instance and attributes.
      * @param sequelize The sequelize instance to use.
      */
-    public static initModel(sequelize: Sequelize): void {
+    public static initModel(sequelize: Sequelize): typeof BaseEntity<User>{
         super.init({
             id: {
                 type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true
-            }, firstName: {
-                type: DataTypes.STRING, allowNull: false
-            }, lastName: {
+            }, name: {
                 type: DataTypes.STRING, allowNull: false
             }, email: {
                 type: DataTypes.STRING, allowNull: false, unique: true
@@ -29,5 +27,6 @@ export class User extends BaseEntity<User> {
             sequelize: sequelize,
             modelName: 'User'
         });
+        return User as typeof BaseEntity<User>;
     }
 }

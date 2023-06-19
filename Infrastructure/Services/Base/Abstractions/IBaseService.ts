@@ -9,7 +9,7 @@ export interface IBaseService<T> {
     createEntity(data: BaseEntity<T>): Promise<BaseEntity<T> | null>;
 
     // Gets an entity by its id
-    getEntity(id: number): Promise<BaseEntity<T> | null>;
+    getEntityById(id: number): Promise<BaseEntity<T> | null>;
 
     // Gets all entities
     getAllEntities(): Promise<BaseEntity<T>[] | null>;

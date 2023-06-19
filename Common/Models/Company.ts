@@ -10,7 +10,7 @@ export class Company extends BaseEntity<Company> {
      * Initializes the Company model with the given sequelize instance and attributes.
      * @param sequelize The sequelize instance to use.
      */
-    public static initModel(sequelize: Sequelize): void {
+    public static initModel(sequelize: Sequelize): typeof BaseEntity<Company> {
         super.init({
             id: {
                 type: DataTypes.INTEGER,
@@ -23,38 +23,15 @@ export class Company extends BaseEntity<Company> {
                     false,
                 unique:
                     true,
-            }
-            ,
-            totalShares: {
-                type: DataTypes.FLOAT,
-                allowNull:
-                    false
-            }
-            ,
-            totalValue: {
-                type: DataTypes.FLOAT,
-                allowNull:
-                    false
-            }
-            ,
-            valuePerShare: {
-                type: DataTypes.FLOAT,
-                allowNull:
-                    false
-            }
-            ,
-            valuePerHour: {
-                type: DataTypes.FLOAT,
-            }
-            ,
-            totalHours: {
-                type: DataTypes.FLOAT,
-                allowNull:
-                    false
+            },
+            description: {
+                type: DataTypes.TEXT,
+                unique: true,
             }
         }, {
             sequelize: sequelize,
             modelName: 'Company'
         });
+        return Company as typeof BaseEntity<Company>;
     }
 }

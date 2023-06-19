@@ -12,7 +12,7 @@ export class BaseRepository<T extends BaseEntity<T>> implements IBaseRepository<
      * The model class that represents the entity type.
      * It is initialized with the BaseEntity class and cast to the entity type.
      */
-    private model: typeof BaseEntity;
+    protected model: typeof BaseEntity;
 
     /**
      * Creates a new repository with the given sequelize instance.

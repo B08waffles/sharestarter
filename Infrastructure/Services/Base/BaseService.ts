@@ -31,7 +31,7 @@ export class BaseService<T> implements IBaseService<T> {
      * @param id The id of the entity to get
      * @returns The entity or null if not found
      */
-    public async getEntity(id: number): Promise<BaseEntity<T> | null> {
+    public async getEntityById(id: number): Promise<BaseEntity<T> | null> {
         return await this.baseRepository.getEntityById(id);
     }
 

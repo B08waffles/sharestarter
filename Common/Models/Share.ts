@@ -38,7 +38,7 @@ export class Share extends BaseEntity<Share> {
      * Initializes the Share model with the given sequelize instance and attributes.
      * @param sequelize The sequelize instance to use.
      */
-    public static initModel(sequelize: Sequelize): void {
+    public static initModel(sequelize: Sequelize): typeof BaseEntity<Share> {
         super.init({
             id: {
                 type: DataTypes.INTEGER,
@@ -58,11 +58,11 @@ export class Share extends BaseEntity<Share> {
                 references: 'User',
                 allowNull: false,
             },
-            value: {
+            share_value: {
                 type: DataTypes.FLOAT,
                 allowNull: false
             },
-            hours: {
+            hours_worked: {
                 type: DataTypes.FLOAT,
                 allowNull: false
             }
@@ -70,5 +70,6 @@ export class Share extends BaseEntity<Share> {
             sequelize: sequelize,
             modelName: 'Share'
         });
+        return Share as typeof BaseEntity<Share>;
     };
 }
