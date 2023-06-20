@@ -20,9 +20,7 @@ export class User extends BaseEntity<User> {
                 type: DataTypes.STRING, allowNull: false, unique: true
             }, password: {
                 type: DataTypes.STRING, allowNull: false
-            }, sessionCookie: {
-                type: DataTypes.STRING, unique: true
-            }
+            },
         }, {
             sequelize: sequelize,
             modelName: 'User'

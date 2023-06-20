@@ -2,7 +2,6 @@ import {Share} from "../../Common/Models/Share";
 import {BaseRepository} from "./Base/BaseRepository";
 import {IBaseRepository} from "./Base/Abstractions/IBaseRespository";
 import {DatabaseContext} from "../DatabaseContexts/DatabaseContext";
-import {BaseEntity} from "../../Common/Models/Base/BaseEntity";
 
 /**
  * A class for repositories that handle CRUD operations for Share entities.
@@ -19,7 +18,6 @@ export class ShareRepository extends BaseRepository<Share> implements IBaseRepos
     public constructor(databaseContext: DatabaseContext) {
         super(databaseContext)
         this.model = Share.initModel(databaseContext.getSequelize());
-
     }
 
     /**

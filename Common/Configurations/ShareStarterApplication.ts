@@ -5,6 +5,7 @@ import sessions from "express-session";
 import {cookieExpiry} from "../Constants/cookieExpiry";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import {SessionStore} from "../Extensions/SessionStore";
 
 /**
  * A class that represents an Express app.
@@ -21,7 +22,11 @@ export class ShareStarterApplication {
     /**
      * An instance of the DatabaseContext class.
      */
-    private databaseContext: DatabaseContext;
+    private readonly databaseContext: DatabaseContext;
+    /**
+     * An instance of the SessionStore class.
+     */
+    private readonly sessionStore: SessionStore;
 
     /**
      * The constructor of the class initializes the properties of the class.
@@ -32,13 +37,23 @@ export class ShareStarterApplication {
         // Instantiates the Config class.
         this.config = Config.getInstance();
 
+        // Pass the instantiated Config class as a param/prop to a new DatabaseContext class.
+        this.databaseContext = new DatabaseContext(this.config);
+
+        // Pass the instantiated DatabaseContext as a param/prop to a new SessionStore class.
+        this.sessionStore = new SessionStore(this.databaseContext);
+
         // Parsing the incoming data
         this.app.use(express.json());
         this.app.use(express.urlencoded({extended: true}));
 
         // Set up the session cookie authentication system
         this.app.use(sessions({
-            secret: this.config.getSecret(), saveUninitialized: true, cookie: {maxAge: cookieExpiry}, resave: false
+            secret: this.config.getSecret(),
+            saveUninitialized: true,
+            cookie: {maxAge: cookieExpiry},
+            resave: false,
+            store: this.sessionStore
         }));
 
         // Cookie parser middleware
@@ -49,9 +64,6 @@ export class ShareStarterApplication {
             origin: `http://localhost:${this.config.getPort()}/`,
             optionsSuccessStatus: 200 // Some legacy browsers choke on 204
         }));
-
-        // Pass the instantiated Config class as a param/prop to a new DatabaseContext class.
-        this.databaseContext = new DatabaseContext(this.config);
     }
 
     /**

@@ -33,42 +33,42 @@ export class Config {
     /**
      * A property that represents the session cookie secret.
      */
-    public readonly appSecret: string;
+    private readonly appSecret: string;
 
     /**
      * A property that represents if this app is in debug mode
      */
-    public readonly debug: boolean;
+    private readonly debug: boolean;
 
     /**
      * A property that represents the port number.
      */
-    public readonly port: number;
+    private readonly port: number;
 
     /**
      * A property that represents the database host.
      */
-    public readonly dbHost: string;
+    private readonly dbHost: string;
 
     /**
      * A property that represents the database user.
      */
-    public readonly dbUser: string;
+    private readonly dbUser: string;
 
     /**
      * A property that represents the database password.
      */
-    public readonly dbPass: string;
+    private readonly dbPass: string;
 
     /**
      * A property that represents the database driver.
      */
-    public readonly dbDriver: string;
+    private readonly dbDriver: string;
 
     /**
      * A property that represents the path to the database.
      */
-    public readonly dbPath: string;
+    private readonly dbPath: string;
 
     /**
      * An instance of the Config class.
