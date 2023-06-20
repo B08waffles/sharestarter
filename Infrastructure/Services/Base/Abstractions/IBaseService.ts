@@ -15,7 +15,7 @@ export interface IBaseService<T> {
     getAllEntities(): Promise<BaseEntity<T>[] | null>;
 
     // Updates an entity by its id with the given data
-    updateEntity(id: number, data: BaseEntity<T>): Promise<BaseEntity<T> | null>;
+    updateEntity(data: BaseEntity<T>): Promise<BaseEntity<T> | null>;
 
     // Deletes an entity by its id
     deleteEntity(id: number): Promise<void>;

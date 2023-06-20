@@ -45,12 +45,11 @@ export class BaseService<T> implements IBaseService<T> {
 
     /**
      * Updates an entity by its id with the given data.
-     * @param id The id of the entity to update
      * @param data The data to update the entity with
      * @returns The updated entity or null if not found
      */
-    public async updateEntity(id: number, data: BaseEntity<T>): Promise<BaseEntity<T> | null> {
-        return await this.baseRepository.updateEntity(id, data);
+    public async updateEntity(data: BaseEntity<T>): Promise<BaseEntity<T> | null> {
+        return await this.baseRepository.updateEntity(data.dataValues.id, data);
     }
 
     /**
